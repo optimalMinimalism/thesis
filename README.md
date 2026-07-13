@@ -4,11 +4,11 @@ Repository della mia tesi sulla sicurezza del codice generato da AI code assista
 
 ## Obiettivo
 
-L'obiettivo della tesi è studiare le vulnerabilità presenti in snippet OCaml generati da AI assistants in scenari realistici. Il lavoro è ispirato allo studio *Security Weaknesses of Copilot-Generated Code in GitHub Projects*, che ha analizzato snippet Python e JavaScript generati da tool come Copilot e classificato le debolezze secondo CWE.[web:18]
+L'obiettivo della tesi è studiare le vulnerabilità presenti in snippet OCaml generati da AI assistants in scenari realistici. Il lavoro è ispirato allo studio *Security Weaknesses of Copilot-Generated Code in GitHub Projects*, che ha analizzato snippet Python e JavaScript generati da tool come Copilot e classificato le debolezze secondo CWE.
 
 ## Idea del progetto
 
-Dato che non esiste un corpus ampio e affidabile di snippet OCaml attribuibili con certezza a Copilot in repository pubblici, questo repository usa un **dataset controllato**, generato sperimentalmente. L'idea è mantenere la pipeline dello studio originale — generazione/raccolta snippet, analisi statica, revisione manuale, classificazione CWE — ma applicarla a task OCaml selezionati per dominio.[web:18]
+Dato che non esiste un corpus ampio e affidabile di snippet OCaml attribuibili con certezza a Copilot in repository pubblici, questo repository usa un **dataset controllato**, generato sperimentalmente. L'idea è mantenere la pipeline dello studio originale — generazione/raccolta snippet, analisi statica, revisione manuale, classificazione CWE — ma applicarla a task OCaml selezionati per dominio.
 
 ## Struttura
 
@@ -48,7 +48,7 @@ Per ogni dominio:
 4. analisi statica;
 5. revisione manuale;
 6. classificazione delle issue secondo CWE;
-7. confronto tra modelli e tra domini.[web:18]
+7. confronto tra modelli e tra domini.
 
 ## CWE di interesse
 
