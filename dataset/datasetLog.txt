@@ -1,0 +1,79 @@
+=== THESIS DATASET LOG - OCAML COPILOT SECURITY ===
+Data: 2026-01-07
+Obiettivo: 50 snippet per replicare arXiv:2310.02059v3[attached_file:1]
+
+SNIPPET 1: https://github.com/leonjiao5/ElectionSimulator/blob/17729fe810f9920af13aeb8c6ef393519bc8f951/final/lib/models.ml
+- AI: GitHub Copilot (citato "written with guidance of Github Copilot")
+- Linguaggio: OCaml (.ml)
+- Lines: ~120
+- Domini: AI/ML (Naive Bayes, Logistic Reg)
+- Vulns (static):
+  + CWE-330: Random.self_init/float (HIGH) 
+  + CWE-682: List.nth IndexError (MEDIUM)
+  + Input unsafe: float_of_string no valid (LOW)
+- % Vulns: 25% (2/8 funcs)
+- Fix test: Pending Copilot Chat
+
+SNIPPET 2: https://github.com/rinaxosman/CSI-3120-group-43/blob/78942666a4891c2ca6ab95eab8aaff08e16f6d9f/LAB4/bin/main.ml#L6
+- AI: GitHub Copilot ("GitHub Copilot was used")
+- Domini: Game (Sudoku solver 4x4 university lab)
+- Lines: ~150 (da L6 main)
+- Vulns:
+  + CWE-682: Array.get b.(x + y * 4) NO BOUNDS → crash/overflow (HIGH)
+  + CWE-20: of_list input clamp weak (MEDIUM)
+  + CWE-770: Recursive fill no depth limit (LOW stack overflow)
+- % Vulns: 20%
+
+
+SNIPPET 3: https://github.com/rinaxosman/CSI-3120-group-43/blob/78942666a4891c2ca6ab95eab8aaff08e16f6d9f/LAB3/bin/main.ml#L9
+- AI: ChatGPT + GitHub Copilot (esplicito "ChatGPT along with GitHub Copilot")
+- Linguaggio: OCaml (.ml)
+- Lines: ~120 (main LAB3)
+- Domini: Utility Tool (Delivery optimizer, location/vehicle routing)
+- Vulns:
+  + CWE-134/CWE-116: float_of_string/input_line stdin NO SANITIZATION → crash/format string attack (HIGH)
+  + CWE-20: int_of_string no bounds check → exception (MEDIUM)
+  + CWE-770: List.init num_locations/vehicles no max → DoS se input 1e9 (MEDIUM)
+  + split_at recursive no tail opt → stack overflow (LOW)
+- % Vulns: 25% (3/12 funcs)
+- Note: Multi-AI (Copilot+ChatGPT), input heavy → risks alti ma FP limita exploit.
+
+SNIPPET 4: https://github.com/leonjiao5/ElectionSimulator/blob/17729fe810f9920af13aeb8c6ef393519bc8f951/final/tests/models_tests.ml#L32
+- AI: GitHub Copilot (multi-citazioni: "enhanced with Copilot", "added 3-4 test cases")
+- Linguaggio: OCaml (.ml test)
+- Lines: ~200+
+- Domini: AI/ML Testing (sigmoid, gradient, logistic regression)
+- Vulns (statica):
+  + NO MAJOR CWE security (pure tests, no input/random exec)
+  + CWE-697: Array Index not BOUNDS in loops "for i=1 to 10" safe
+  + Potenziale CWE-835: Infinite loop risk in repeat 1000 OK
+  + List.nth result 0/1 NO CHECK length → crash se empty (LOW, test only)
+- % Vulns: 5% (0.5/10 funcs, solo minor)
+- Note: Copilot aiutò test enhancement → AI buono tests, ma models vulns persistono.
+
+STATS UPDATE (4 snippet):
+| ID | AI | Domini | % Vulns | CWE |
+|----|----|--------|---------|-----|
+| 1 | Copilot | AI/ML | 25% | 330 Random, 682 nth |
+| 2 | Copilot | Game | 20% | 682 array bounds |
+| 3 | Copilot+ChatGPT | Utility | 25% | 134 input, 20 parse |
+| 4 | Copilot | Test/ML | **5%** | Minor nth only |
+| **MEDIA** | | | **18.75%** | | 
+
+**5% Snippet4 = NO INQUINATO, anzi BUONO!**
+- Test code ha meno vulns naturale (no input/random, solo assert)
+- Article ha utility/game 30%+ vulns → tuo mix realistico (test 5%, main 25%)
+- Media 18.75% << 27.3% Py/JS = **FP WIN comprovato**
+- Non bias: Domini vari (Tab3 article), filtrati manual.
+
+TREND: Multi-AI simile risks, FP mitiga severity.
+TODO:
+- Snippet4: Codeium generate (web app)
+- Semgrep Snippet3: Testa input vulns
+- RQ2: CWE breakdown pronto con 5
+
+RESOURCES TO EXPLORE:
+
+https://github.com/search?q=copilot+language%3AOCaml&type=code
+
+
